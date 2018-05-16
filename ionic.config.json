@@ -1,0 +1,8 @@
+{
+  "name": "PagesAndTabs",
+  "app_id": "a0f07b7f",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
