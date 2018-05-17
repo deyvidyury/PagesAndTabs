@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { Page1 } from '../pages/page1/page1';
+import { Page2 } from '../pages/page2/page2';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  @ViewChild(Nav) nav: Nav;
+  text: string = '';
+  rootPage: any = TabsPage;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -18,5 +23,17 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    this.pages = [
+      { title: 'Page One', component: Page1 },
+      { title: 'Page Two', component: Page2 },
+    ];
+  }
+
+  openPage(page) {
+    this.nav.setRoot(page.component);
+  }
+
+  rightMenuClick(text) {
+    this.text = text;
   }
 }
